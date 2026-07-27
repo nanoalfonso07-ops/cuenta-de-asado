@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Cuenta del Asado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Mono:wght@400;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --kraft:#dcc79f;
+    --kraft-dark:#c9b183;
+    --tinta:#231d15;
+    --sello:#b3352b;
+    --verde:#2e6e46;
+    --papel:#faf6ec;
+    --sombra:rgba(35,29,21,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Archivo',sans-serif;
+    color:var(--tinta);
+    background:var(--kraft);
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(255,255,255,.10), transparent 42%),
+      radial-gradient(circle at 82% 78%, rgba(0,0,0,.07), transparent 46%),
+      repeating-linear-gradient(94deg, transparent 0 46px, rgba(0,0,0,.028) 46px 47px);
+    min-height:100vh;
+    padding:20px 14px 90px;
+  }
+  .wrap{max-width:520px;margin:0 auto}
+
+  header{text-align:center;margin-bottom:24px}
+  h1{
+    font-family:'Permanent Marker',cursive;
+    font-size:clamp(2rem,9vw,2.9rem);
+    line-height:.95;
+    transform:rotate(-1.5deg);
+  }
+  header .sub{
+    font-family:'Space Mono',monospace;
+    font-size:.7rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    margin-top:10px;
+    opacity:.75;
+  }
+  header::after{
+    content:"";display:block;width:120px;height:4px;
+    margin:13px auto 0;background:var(--tinta);
+    border-radius:2px;transform:rotate(-.8deg);
+  }
+
+  .card{
+    background:var(--papel);
+    border:2px solid var(--tinta);
+    border-radius:6px;
+    box-shadow:4px 5px 0 var(--sombra);
+    padding:18px 16px;
+    margin-bottom:20px;
+    transform:rotate(-.3deg);
+  }
+  .card h2{font-family:'Permanent Marker',cursive;font-size:1.1rem;margin-bottom:12px}
+
+  .gasto{
+    display:flex;align-items:center;gap:10px;
+    padding:7px 0;
+    border-bottom:1.5px dashed var(--kraft-dark);
+  }
+  .gasto:last-of-type{border-bottom:none}
+  .gasto label{flex:1;font-weight:600;font-size:.95rem}
+  .gasto .campo{
+    display:flex;align-items:center;
+    border:2px solid var(--tinta);border-radius:4px;
+    background:#fff;width:130px;
+  }
+  .gasto .campo span{
+    font-family:'Space Mono',monospace;font-weight:700;
+    padding-left:10px;opacity:.55;
+  }
+  input[type=number],input[type=text]{
+    font-family:'Space Mono',monospace;
+    font-size:1rem;
+    padding:9px 10px 9px 4px;
+    border:none;background:transparent;
+    color:var(--tinta);width:100%;min-width:0;
+    text-align:right;
+  }
+  input[type=text]{text-align:left;padding-left:10px}
+  input:focus{outline:none}
+  .campo:focus-within,.personas-box:focus-within{outline:3px solid var(--sello);outline-offset:1px;border-radius:4px}
+  input::placeholder{opacity:.4}
+  input[type=number]{appearance:textfield;-moz-appearance:textfield}
+  input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+
+  .del{
+    background:transparent;border:none;color:var(--sello);
+    font-size:1.25rem;line-height:1;padding:2px 4px;font-weight:700;cursor:pointer;
+  }
+  .btn-otro{
+    margin-top:12px;width:100%;
+    font-family:'Space Mono',monospace;font-size:.8rem;
+    padding:9px;background:transparent;color:var(--tinta);
+    border:1.5px dashed var(--tinta);border-radius:999px;cursor:pointer;
+  }
+  .btn-otro:active{background:var(--tinta);color:var(--papel)}
+
+  .personas{display:flex;align-items:center;gap:14px}
+  .personas h2{margin-bottom:0;flex:1}
+  .stepper{display:flex;align-items:center;gap:10px}
+  .stepper button{
+    width:44px;height:44px;font-size:1.4rem;font-weight:700;
+    border:2px solid var(--tinta);border-radius:50%;
+    background:var(--tinta);color:var(--papel);cursor:pointer;
+  }
+  .stepper button:active{transform:translateY(2px)}
+  .personas-box{width:64px;border:2px solid var(--tinta);border-radius:4px;background:#fff}
+  .personas-box input{text-align:center;font-weight:700;font-size:1.2rem;padding:8px 4px}
+
+  /* preview del ticket (canvas) */
+  .ticket-preview{
+    display:block;width:100%;height:auto;
+    box-shadow:0 6px 14px var(--sombra);
+    transform:rotate(.6deg);
+    border-radius:2px;
+  }
+  .esperando{
+    text-align:center;font-size:.85rem;opacity:.55;
+    font-style:italic;padding:18px 0;
+    background:var(--papel);border:2px dashed var(--tinta);border-radius:6px;
+  }
+  .acciones{display:flex;gap:10px;margin-top:16px}
+  .acciones button{
+    font-family:'Archivo',sans-serif;font-weight:600;font-size:.9rem;
+    padding:12px 14px;border-radius:4px;cursor:pointer;border:2px solid var(--tinta);
+  }
+  .btn-wsp{flex:1;background:var(--verde);border-color:var(--verde)!important;color:#fff}
+  .btn-img{flex:1;background:var(--tinta);color:var(--papel)}
+  .acciones button:active{transform:translateY(2px)}
+  .aviso{
+    text-align:center;font-size:.75rem;opacity:.6;margin-top:10px;
+    font-family:'Space Mono',monospace;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>La Cuenta<br>del Asado</h1>
+    <div class="sub">poné los gastos · te digo cuánto pone cada uno</div>
+  </header>
+
+  <!-- GASTOS -->
+  <section class="card">
+    <h2>¿Cuánto se gastó?</h2>
+    <div id="gastos">
+      <div class="gasto">
+        <label>Carne</label>
+        <div class="campo"><span>$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Gasto en carne"></div>
+      </div>
+      <div class="gasto">
+        <label>Picada</label>
+        <div class="campo"><span>$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Gasto en picada"></div>
+      </div>
+      <div class="gasto">
+        <label>Leña / carbón</label>
+        <div class="campo"><span>$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Gasto en leña"></div>
+      </div>
+      <div class="gasto">
+        <label>Bebida</label>
+        <div class="campo"><span>$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Gasto en bebida"></div>
+      </div>
+    </div>
+    <button class="btn-otro" id="btnOtro">+ agregar otro gasto</button>
+  </section>
+
+  <!-- PERSONAS -->
+  <section class="card personas">
+    <h2>¿Cuántos son?</h2>
+    <div class="stepper">
+      <button id="menos" aria-label="Una persona menos">−</button>
+      <div class="personas-box"><input type="number" id="cant" value="4" min="1" inputmode="numeric" aria-label="Cantidad de personas"></div>
+      <button id="mas" aria-label="Una persona más">+</button>
+    </div>
+  </section>
+
+  <!-- TICKET (canvas = la imagen que se descarga) -->
+  <div id="zonaTicket">
+    <div class="esperando" id="esperando">Cargá los gastos y el ticket aparece acá 👇</div>
+    <canvas class="ticket-preview" id="cv" hidden></canvas>
+  </div>
+  <div class="acciones">
+    <button class="btn-wsp" id="btnWsp">📲 Mandar al grupo</button>
+    <button class="btn-img" id="btnImg">🖼️ Descargar</button>
+  </div>
+  <p class="aviso">Lo que ves ahí arriba es exactamente la imagen que se comparte.</p>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var fmt = function(n){ return '$' + Math.round(n).toLocaleString('es-UY'); };
+
+  function leerGastos(){
+    var items = [];
+    document.querySelectorAll('#gastos .gasto').forEach(function(fila){
+      var lbl = fila.querySelector('label') ? fila.querySelector('label').textContent
+              : (fila.querySelector('.nombre-otro').value.trim() || 'Otro');
+      var m = parseFloat(fila.querySelector('.monto').value);
+      if(m > 0) items.push({c:lbl, m:m});
+    });
+    return items;
+  }
+
+  function datos(){
+    var items = leerGastos();
+    var cant = parseInt($('cant').value, 10);
+    if(!items.length || !(cant >= 1)) return null;
+    var total = items.reduce(function(s,i){ return s + i.m; }, 0);
+    return {items:items, cant:cant, total:total, porCabeza:total/cant};
+  }
+
+  /* ---------- DIBUJO DEL TICKET EN CANVAS ---------- */
+  var S = 2; // escala para nitidez
+  function dibujar(){
+    var d = datos();
+    var cv = $('cv'), esp = $('esperando');
+    if(!d){ cv.hidden = true; esp.hidden = false; return null; }
+
+    var W = 640;
+    var margen = 46;           // marco kraft alrededor del ticket
+    var tw = W - margen*2;     // ancho del ticket
+    var px = 36;               // padding interno del ticket
+    var yBase = margen + 58;
+    var altoItems = d.items.length * 40;
+    var H = yBase + 74 + altoItems + 250 + margen;
+
+    cv.width = W*S; cv.height = H*S;
+    cv.style.aspectRatio = W + '/' + H;
+    var c = cv.getContext('2d');
+    c.scale(S,S);
+
+    // fondo kraft
+    c.fillStyle = '#dcc79f';
+    c.fillRect(0,0,W,H);
+    c.strokeStyle = 'rgba(0,0,0,.04)';
+    for(var gx=0; gx<W; gx+=46){ c.beginPath(); c.moveTo(gx,0); c.lineTo(gx+18,H); c.stroke(); }
+
+    // sombra + cuerpo del ticket con borde dentado
+    var tx = margen, ty = margen, th = H - margen*2;
+    c.save();
+    c.translate(0, 0);
+    c.fillStyle = 'rgba(35,29,21,.25)';
+    dentado(c, tx+5, ty+7, tw, th); c.fill();
+    c.fillStyle = '#ffffff';
+    dentado(c, tx, ty, tw, th); c.fill();
+    c.restore();
+
+    var cx = W/2;
+    var y = ty + 52;
+
+    // encabezado
+    c.fillStyle = '#231d15';
+    c.textAlign = 'center';
+    c.font = '700 22px "Space Mono", monospace';
+    var hoy = new Date().toLocaleDateString('es-UY').split('/').join('.');
+    c.fillText('A S A D O  —  ' + hoy, cx, y); y += 24;
+    c.font = '400 15px "Space Mono", monospace';
+    c.globalAlpha = .6;
+    c.fillText(d.cant + (d.cant === 1 ? ' comensal' : ' comensales'), cx, y);
+    c.globalAlpha = 1; y += 34;
+
+    // items
+    c.font = '400 17px "Space Mono", monospace';
+    d.items.forEach(function(i){
+      c.textAlign = 'left';  c.fillText(i.c, tx+px, y);
+      c.textAlign = 'right'; c.fillText(fmt(i.m), tx+tw-px, y);
+      y += 40;
+    });
+
+    // separador
+    y -= 12; guiones(c, tx+px, y, tw-px*2); y += 34;
+
+    // total
+    c.font = '700 20px "Space Mono", monospace';
+    c.textAlign = 'left';  c.fillText('TOTAL', tx+px, y);
+    c.textAlign = 'right'; c.fillText(fmt(d.total), tx+tw-px, y);
+    y += 26; guiones(c, tx+px, y, tw-px*2); y += 46;
+
+    // resultado grande
+    c.textAlign = 'center';
+    c.font = '400 13px "Space Mono", monospace';
+    c.globalAlpha = .65;
+    c.fillText('L E   D A   C A D A   U N O   A L   Q U E   P A G Ó', cx, y);
+    c.globalAlpha = 1; y += 52;
+    c.fillStyle = '#b3352b';
+    c.font = '46px "Permanent Marker", cursive';
+    c.save(); c.translate(cx, y); c.rotate(-0.02);
+    c.fillText(fmt(d.porCabeza), 0, 0);
+    c.restore(); y += 30;
+    c.fillStyle = '#231d15';
+    c.font = '400 14px "Space Mono", monospace';
+    c.globalAlpha = .7;
+    c.fillText('(' + fmt(d.total) + ' ÷ ' + d.cant + ')', cx, y);
+    c.globalAlpha = 1;
+
+    // sello
+    c.save();
+    c.translate(tx+tw-92, ty+th-46); c.rotate(-0.10);
+    c.strokeStyle = '#b3352b'; c.fillStyle = '#b3352b'; c.lineWidth = 3;
+    c.globalAlpha = .85;
+    c.strokeRect(-62, -22, 124, 40);
+    c.font = '20px "Permanent Marker", cursive';
+    c.textAlign = 'center';
+    c.fillText('A SALDAR', 0, 6);
+    c.restore();
+
+    cv.hidden = false; esp.hidden = true;
+    return d;
+  }
+
+  function dentado(c, x, y, w, h){
+    var r = 7, paso = 16;
+    c.beginPath();
+    c.moveTo(x, y+r);
+    for(var i=x; i<x+w-paso/2; i+=paso){ c.arc(i+paso/2, y, r, Math.PI, 0, false); }
+    c.lineTo(x+w, y+h-r);
+    for(var j=x+w; j>x+paso/2; j-=paso){ c.arc(j-paso/2, y+h, r, 0, Math.PI, false); }
+    c.closePath();
+  }
+
+  function guiones(c, x, y, w){
+    c.save();
+    c.strokeStyle = 'rgba(35,29,21,.5)';
+    c.lineWidth = 2; c.setLineDash([8,7]);
+    c.beginPath(); c.moveTo(x, y); c.lineTo(x+w, y); c.stroke();
+    c.restore();
+  }
+
+  function nombreArchivo(){
+    return 'cuenta-asado-' + new Date().toISOString().slice(0,10) + '.png';
+  }
+
+  function descargar(){
+    if(!dibujar()) return;
+    $('cv').toBlob(function(blob){
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = nombreArchivo();
+      a.click();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+    }, 'image/png');
+  }
+
+  function mandarAlGrupo(){
+    var d = dibujar();
+    if(!d) return;
+    $('cv').toBlob(function(blob){
+      var file = new File([blob], nombreArchivo(), {type:'image/png'});
+      // en el celu: comparte la IMAGEN directo (elegís WhatsApp y el grupo)
+      if(navigator.canShare && navigator.canShare({files:[file]})){
+        navigator.share({files:[file], title:'La cuenta del asado'}).catch(function(){});
+      } else {
+        // fallback de escritorio: descarga la imagen y abre WhatsApp con el texto
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = nombreArchivo();
+        a.click();
+        var lineas = ['🥩 *LA CUENTA DEL ASADO*',''];
+        d.items.forEach(function(i){ lineas.push('• ' + i.c + ': ' + fmt(i.m)); });
+        lineas.push('', 'Total: ' + fmt(d.total), 'Somos: ' + d.cant, '',
+          '👉 *Cada uno pone ' + fmt(d.porCabeza) + '*');
+        window.open('https://wa.me/?text=' + encodeURIComponent(lineas.join('\n')), '_blank');
+        setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+      }
+    }, 'image/png');
+  }
+
+  /* ---------- eventos ---------- */
+  $('btnOtro').addEventListener('click', function(){
+    var fila = document.createElement('div');
+    fila.className = 'gasto';
+    fila.innerHTML =
+      '<div class="campo" style="flex:1;width:auto"><input type="text" class="nombre-otro" placeholder="¿Qué cosa?" aria-label="Nombre del gasto"></div>' +
+      '<div class="campo"><span>$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Monto"></div>' +
+      '<button class="del" aria-label="Borrar gasto">×</button>';
+    $('gastos').appendChild(fila);
+    fila.querySelector('.nombre-otro').focus();
+  });
+
+  $('gastos').addEventListener('click', function(e){
+    if(e.target.classList.contains('del')){
+      e.target.closest('.gasto').remove();
+      dibujar();
+    }
+  });
+
+  document.addEventListener('input', dibujar);
+  $('mas').addEventListener('click', function(){
+    $('cant').value = (parseInt($('cant').value,10) || 0) + 1; dibujar();
+  });
+  $('menos').addEventListener('click', function(){
+    $('cant').value = Math.max(1, (parseInt($('cant').value,10) || 2) - 1); dibujar();
+  });
+  $('btnWsp').addEventListener('click', mandarAlGrupo);
+  $('btnImg').addEventListener('click', descargar);
+
+  // redibujar cuando cargan las tipografías (para que el canvas las use)
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(dibujar); }
+  dibujar();
+})();
+</script>
+</body>
+</html>
