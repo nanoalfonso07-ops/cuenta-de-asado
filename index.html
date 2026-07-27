@@ -15,173 +15,102 @@
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Mono:wght@400;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --kraft:#dcc79f;
-    --kraft-dark:#c9b183;
-    --tinta:#231d15;
-    --sello:#b3352b;
-    --verde:#2e6e46;
-    --papel:#faf6ec;
+    --kraft:#dcc79f; --kraft-dark:#c9b183; --tinta:#231d15;
+    --sello:#b3352b; --verde:#2e6e46; --papel:#faf6ec;
     --sombra:rgba(35,29,21,.22);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
   body{
-    font-family:'Archivo',sans-serif;
-    color:var(--tinta);
-    background:var(--kraft);
+    font-family:'Archivo',sans-serif;color:var(--tinta);background:var(--kraft);
     background-image:
       radial-gradient(circle at 18% 12%, rgba(255,255,255,.10), transparent 42%),
       radial-gradient(circle at 82% 78%, rgba(0,0,0,.07), transparent 46%),
       repeating-linear-gradient(94deg, transparent 0 46px, rgba(0,0,0,.028) 46px 47px);
-    min-height:100vh;
-    padding:20px 14px 90px;
+    min-height:100vh;padding:20px 14px 90px;
   }
   .wrap{max-width:520px;margin:0 auto}
-
   header{text-align:center;margin-bottom:18px}
-  h1{
-    font-family:'Permanent Marker',cursive;
-    font-size:clamp(1.9rem,8.5vw,2.8rem);
-    line-height:.95;
-    transform:rotate(-1.5deg);
-  }
-  header .sub{
-    font-family:'Space Mono',monospace;
-    font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
-    margin-top:9px;opacity:.75;
-  }
+  h1{font-family:'Permanent Marker',cursive;font-size:clamp(1.9rem,8.5vw,2.8rem);line-height:.95;transform:rotate(-1.5deg)}
+  header .sub{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;margin-top:9px;opacity:.75}
 
-  /* tabs */
-  .tabs{
-    display:flex;gap:6px;margin:18px 0 20px;
-    background:rgba(35,29,21,.08);
-    padding:5px;border-radius:999px;
-  }
-  .tab{
-    flex:1;text-align:center;
-    font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;
-    padding:10px 4px;border:none;border-radius:999px;
-    background:transparent;color:var(--tinta);cursor:pointer;
-  }
+  .tabs{display:flex;gap:5px;margin:18px 0 20px;background:rgba(35,29,21,.08);padding:5px;border-radius:999px}
+  .tab{flex:1;text-align:center;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;padding:10px 2px;border:none;border-radius:999px;background:transparent;color:var(--tinta);cursor:pointer}
   .tab.on{background:var(--tinta);color:var(--papel)}
 
-  .card{
-    background:var(--papel);
-    border:2px solid var(--tinta);border-radius:6px;
-    box-shadow:4px 5px 0 var(--sombra);
-    padding:18px 16px;margin-bottom:20px;
-    transform:rotate(-.3deg);
-  }
+  .card{background:var(--papel);border:2px solid var(--tinta);border-radius:6px;box-shadow:4px 5px 0 var(--sombra);padding:18px 16px;margin-bottom:20px;transform:rotate(-.3deg)}
   .card h2{font-family:'Permanent Marker',cursive;font-size:1.1rem;margin-bottom:12px}
   .card .mini{font-size:.78rem;opacity:.6;margin:-8px 0 12px}
 
-  .fila{
-    display:flex;align-items:center;gap:10px;
-    padding:7px 0;border-bottom:1.5px dashed var(--kraft-dark);
-  }
+  .fila{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1.5px dashed var(--kraft-dark)}
   .fila:last-of-type{border-bottom:none}
   .fila label,.fila .lbl{flex:1;font-weight:600;font-size:.95rem}
-  .campo{
-    display:flex;align-items:center;
-    border:2px solid var(--tinta);border-radius:4px;background:#fff;width:120px;
-  }
+  .campo{display:flex;align-items:center;border:2px solid var(--tinta);border-radius:4px;background:#fff;width:120px}
   .campo span{font-family:'Space Mono',monospace;font-weight:700;padding-left:9px;opacity:.55;font-size:.85rem}
-  input[type=number],input[type=text]{
-    font-family:'Space Mono',monospace;font-size:1rem;
-    padding:9px 10px 9px 4px;border:none;background:transparent;
-    color:var(--tinta);width:100%;min-width:0;text-align:right;
-  }
+  input[type=number],input[type=text]{font-family:'Space Mono',monospace;font-size:1rem;padding:9px 10px 9px 4px;border:none;background:transparent;color:var(--tinta);width:100%;min-width:0;text-align:right}
   input[type=text]{text-align:left;padding-left:10px}
   input:focus{outline:none}
   .campo:focus-within,.cbox:focus-within{outline:3px solid var(--sello);outline-offset:1px;border-radius:4px}
   input::placeholder{opacity:.4}
   input[type=number]{appearance:textfield;-moz-appearance:textfield}
   input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-  select{
-    font-family:'Space Mono',monospace;font-size:.82rem;
-    padding:8px;border:2px solid var(--tinta);border-radius:4px;
-    background:#fff;color:var(--tinta);max-width:130px;
-  }
+  select{font-family:'Space Mono',monospace;font-size:.82rem;padding:8px;border:2px solid var(--tinta);border-radius:4px;background:#fff;color:var(--tinta);max-width:130px}
 
   .del{background:transparent;border:none;color:var(--sello);font-size:1.25rem;line-height:1;padding:2px 4px;font-weight:700;cursor:pointer}
-  .btn-linea{
-    margin-top:12px;width:100%;
-    font-family:'Space Mono',monospace;font-size:.8rem;
-    padding:9px;background:transparent;color:var(--tinta);
-    border:1.5px dashed var(--tinta);border-radius:999px;cursor:pointer;
-  }
+  .btn-linea{margin-top:12px;width:100%;font-family:'Space Mono',monospace;font-size:.8rem;padding:9px;background:transparent;color:var(--tinta);border:1.5px dashed var(--tinta);border-radius:999px;cursor:pointer}
   .btn-linea:active{background:var(--tinta);color:var(--papel)}
+  .btn-solido{font-family:'Archivo',sans-serif;font-weight:600;font-size:.9rem;padding:12px;border-radius:4px;cursor:pointer;border:2px solid var(--tinta);background:var(--tinta);color:var(--papel);width:100%}
+  .btn-solido.rojo{background:var(--sello);border-color:var(--sello)}
+  .btn-solido:active{transform:translateY(2px)}
 
   .stepper{display:flex;align-items:center;gap:8px}
-  .stepper button{
-    width:38px;height:38px;font-size:1.2rem;font-weight:700;
-    border:2px solid var(--tinta);border-radius:50%;
-    background:var(--tinta);color:var(--papel);cursor:pointer;flex:none;
-  }
+  .stepper button{width:38px;height:38px;font-size:1.2rem;font-weight:700;border:2px solid var(--tinta);border-radius:50%;background:var(--tinta);color:var(--papel);cursor:pointer;flex:none}
   .stepper button:active{transform:translateY(2px)}
   .cbox{width:56px;border:2px solid var(--tinta);border-radius:4px;background:#fff;flex:none}
   .cbox input{text-align:center;font-weight:700;font-size:1.05rem;padding:7px 2px}
 
-  /* switch modo */
-  .switch{
-    display:flex;gap:6px;margin-bottom:14px;
-    background:rgba(35,29,21,.08);padding:4px;border-radius:999px;
-  }
-  .switch button{
-    flex:1;font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;
-    padding:8px 4px;border:none;border-radius:999px;background:transparent;color:var(--tinta);cursor:pointer;
-  }
+  .switch{display:flex;gap:6px;margin-bottom:14px;background:rgba(35,29,21,.08);padding:4px;border-radius:999px}
+  .switch button{flex:1;font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;padding:8px 4px;border:none;border-radius:999px;background:transparent;color:var(--tinta);cursor:pointer}
   .switch button.on{background:var(--sello);color:#fff}
 
-  /* moneda */
   .monedas{display:flex;gap:6px}
-  .monedas button{
-    font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;
-    padding:7px 12px;border:2px solid var(--tinta);border-radius:999px;
-    background:transparent;color:var(--tinta);cursor:pointer;
-  }
+  .monedas button{font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;padding:7px 12px;border:2px solid var(--tinta);border-radius:999px;background:transparent;color:var(--tinta);cursor:pointer}
   .monedas button.on{background:var(--tinta);color:var(--papel)}
 
   .ticket-preview{display:block;width:100%;height:auto;box-shadow:0 6px 14px var(--sombra);transform:rotate(.6deg);border-radius:2px}
-  .esperando{
-    text-align:center;font-size:.85rem;opacity:.55;font-style:italic;
-    padding:18px 0;background:var(--papel);border:2px dashed var(--tinta);border-radius:6px;
-  }
+  .esperando{text-align:center;font-size:.85rem;opacity:.55;font-style:italic;padding:18px 0;background:var(--papel);border:2px dashed var(--tinta);border-radius:6px}
   .acciones{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
-  .acciones button{
-    font-family:'Archivo',sans-serif;font-weight:600;font-size:.88rem;
-    padding:12px 12px;border-radius:4px;cursor:pointer;border:2px solid var(--tinta);flex:1;min-width:110px;
-  }
+  .acciones button{font-family:'Archivo',sans-serif;font-weight:600;font-size:.88rem;padding:12px;border-radius:4px;cursor:pointer;border:2px solid var(--tinta);flex:1;min-width:110px}
   .btn-wsp{background:var(--verde);border-color:var(--verde)!important;color:#fff}
   .btn-img{background:var(--tinta);color:var(--papel)}
   .btn-save{background:transparent;color:var(--tinta)}
   .acciones button:active{transform:translateY(2px)}
 
-  /* previa (carne) */
   .previa-res{list-style:none;margin-top:6px}
-  .previa-res li{
-    display:flex;justify-content:space-between;
-    font-family:'Space Mono',monospace;font-size:.88rem;
-    padding:8px 2px;border-bottom:1.5px dashed var(--kraft-dark);
-  }
+  .previa-res li{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.88rem;padding:8px 2px;border-bottom:1.5px dashed var(--kraft-dark)}
   .previa-res li:last-child{border-bottom:none}
   .previa-res b{color:var(--sello)}
 
-  /* historial */
-  .hist-item{
-    display:flex;justify-content:space-between;align-items:center;gap:10px;
-    font-size:.88rem;padding:10px 2px;border-bottom:1.5px dashed var(--kraft-dark);
-  }
+  .hist-item{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.88rem;padding:10px 2px;border-bottom:1.5px dashed var(--kraft-dark)}
   .hist-item:last-child{border-bottom:none}
   .hist-item .f{font-family:'Space Mono',monospace;font-size:.75rem;opacity:.6}
   .hist-item .t{font-family:'Space Mono',monospace;font-weight:700}
   .ranking{margin-top:14px;font-size:.85rem}
   .ranking .titulo{font-family:'Permanent Marker',cursive;font-size:.95rem;margin-bottom:6px}
   .vacio{font-size:.85rem;opacity:.55;font-style:italic;padding:6px 2px}
-  .pill{
-    font-size:.7rem;font-family:'Space Mono',monospace;
-    background:var(--kraft);padding:2px 8px;border-radius:999px;
+  .pill{font-size:.7rem;font-family:'Space Mono',monospace;background:var(--kraft);padding:2px 8px;border-radius:999px}
+
+  /* grupo */
+  .codigo-grande{
+    font-family:'Permanent Marker',cursive;font-size:2rem;color:var(--sello);
+    text-align:center;letter-spacing:.08em;margin:8px 0;
+    transform:rotate(-1deg);
   }
+  .grupo-head{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .grupo-head h2{flex:1;margin-bottom:0}
+  .btn-mini{font-family:'Space Mono',monospace;font-size:.7rem;padding:6px 10px;border:1.5px solid var(--tinta);border-radius:999px;background:transparent;color:var(--tinta);cursor:pointer}
+  .aviso-config{background:#fff;border:2px solid var(--sello);border-radius:6px;padding:14px;font-size:.85rem;margin-bottom:20px}
+  .aviso-config code{font-family:'Space Mono',monospace;font-size:.75rem;background:var(--kraft);padding:1px 5px;border-radius:3px}
   [hidden]{display:none!important}
 </style>
 </head>
@@ -193,9 +122,10 @@
   </header>
 
   <nav class="tabs">
-    <button class="tab" data-t="previa">🥩 La previa</button>
-    <button class="tab on" data-t="cuenta">🧾 La cuenta</button>
-    <button class="tab" data-t="hist">🗂 Historial</button>
+    <button class="tab" data-t="previa">🥩 Previa</button>
+    <button class="tab on" data-t="cuenta">🧾 Cuenta</button>
+    <button class="tab" data-t="grupo">👥 Grupo</button>
+    <button class="tab" data-t="hist">🗂 Hist.</button>
   </nav>
 
   <!-- ================= LA PREVIA ================= -->
@@ -207,7 +137,7 @@
         <span class="lbl">Grandes</span>
         <div class="stepper">
           <button data-s="-adultos" aria-label="Menos grandes">−</button>
-          <div class="cbox"><input type="number" id="adultos" value="6" min="0" inputmode="numeric" aria-label="Cantidad de grandes"></div>
+          <div class="cbox"><input type="number" id="adultos" value="6" min="0" inputmode="numeric" aria-label="Grandes"></div>
           <button data-s="+adultos" aria-label="Más grandes">+</button>
         </div>
       </div>
@@ -215,7 +145,7 @@
         <span class="lbl">Gurises</span>
         <div class="stepper">
           <button data-s="-ninos" aria-label="Menos gurises">−</button>
-          <div class="cbox"><input type="number" id="ninos" value="0" min="0" inputmode="numeric" aria-label="Cantidad de gurises"></div>
+          <div class="cbox"><input type="number" id="ninos" value="0" min="0" inputmode="numeric" aria-label="Gurises"></div>
           <button data-s="+ninos" aria-label="Más gurises">+</button>
         </div>
       </div>
@@ -226,13 +156,12 @@
     </section>
   </div>
 
-  <!-- ================= LA CUENTA ================= -->
+  <!-- ================= LA CUENTA (local) ================= -->
   <div id="vista-cuenta">
-
     <section class="card">
       <div class="switch">
         <button id="modoRapido" class="on">RÁPIDO — por cabeza</button>
-        <button id="modoNombres">CON NOMBRES — quién pagó qué</button>
+        <button id="modoNombres">CON NOMBRES</button>
       </div>
       <div class="fila" style="border:none;padding-top:0">
         <span class="lbl">Moneda</span>
@@ -244,55 +173,50 @@
       </div>
     </section>
 
-    <!-- personas con nombre (modo nombres) -->
     <section class="card" id="cardPersonas" hidden>
       <h2>¿Quiénes van?</h2>
-      <p class="mini">La "parte" es cuánto le toca: entera, media (gurises) o liviana (solo picó algo).</p>
+      <p class="mini">La "parte" es cuánto le toca: entera, media (gurises) o liviana.</p>
       <div id="personas"></div>
       <button class="btn-linea" id="btnPersona">+ agregar persona</button>
     </section>
 
-    <!-- gastos -->
     <section class="card">
       <h2>¿Cuánto se gastó?</h2>
       <div id="gastos">
-        <div class="fila g-fija"><label>Carne</label><div class="campo"><span class="simbolo">$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Gasto en carne"></div><select class="pagador" hidden></select></div>
-        <div class="fila g-fija"><label>Picada</label><div class="campo"><span class="simbolo">$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Gasto en picada"></div><select class="pagador" hidden></select></div>
-        <div class="fila g-fija"><label>Leña / carbón</label><div class="campo"><span class="simbolo">$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Gasto en leña"></div><select class="pagador" hidden></select></div>
-        <div class="fila g-fija"><label>Bebida</label><div class="campo"><span class="simbolo">$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Gasto en bebida"></div><select class="pagador" hidden></select></div>
+        <div class="fila g-fija"><label>Carne</label><div class="campo"><span class="simbolo">$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Carne"></div><select class="pagador" hidden></select></div>
+        <div class="fila g-fija"><label>Picada</label><div class="campo"><span class="simbolo">$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Picada"></div><select class="pagador" hidden></select></div>
+        <div class="fila g-fija"><label>Leña / carbón</label><div class="campo"><span class="simbolo">$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Leña"></div><select class="pagador" hidden></select></div>
+        <div class="fila g-fija"><label>Bebida</label><div class="campo"><span class="simbolo">$</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Bebida"></div><select class="pagador" hidden></select></div>
       </div>
       <button class="btn-linea" id="btnOtro">+ agregar otro gasto</button>
     </section>
 
-    <!-- cuántos son (modo rápido) -->
     <section class="card" id="cardCant">
       <h2>¿Cuántos son?</h2>
       <div class="fila">
         <span class="lbl">Parte entera</span>
         <div class="stepper">
           <button data-s="-cant" aria-label="Menos">−</button>
-          <div class="cbox"><input type="number" id="cant" value="4" min="0" inputmode="numeric" aria-label="Personas parte entera"></div>
+          <div class="cbox"><input type="number" id="cant" value="4" min="0" inputmode="numeric" aria-label="Parte entera"></div>
           <button data-s="+cant" aria-label="Más">+</button>
         </div>
       </div>
       <div class="fila">
-        <span class="lbl">Media parte <span class="pill">gurises / livianos</span></span>
+        <span class="lbl">Media parte <span class="pill">gurises</span></span>
         <div class="stepper">
           <button data-s="-medias" aria-label="Menos medias">−</button>
-          <div class="cbox"><input type="number" id="medias" value="0" min="0" inputmode="numeric" aria-label="Personas media parte"></div>
+          <div class="cbox"><input type="number" id="medias" value="0" min="0" inputmode="numeric" aria-label="Media parte"></div>
           <button data-s="+medias" aria-label="Más medias">+</button>
         </div>
       </div>
     </section>
 
-    <!-- alias -->
     <section class="card">
       <h2>¿A dónde transfieren?</h2>
       <p class="mini">Alias, cuenta o celular del que pagó. Sale en el ticket.</p>
-      <div class="campo" style="width:100%"><input type="text" id="alias" placeholder="ej: nano.mp / BROU 001-123456" aria-label="Alias o cuenta"></div>
+      <div class="campo" style="width:100%"><input type="text" id="alias" placeholder="ej: nano.mp / BROU 001-123456" aria-label="Alias"></div>
     </section>
 
-    <!-- ticket -->
     <div id="zonaTicket">
       <div class="esperando" id="esperando">Cargá los gastos y el ticket aparece acá 👇</div>
       <canvas class="ticket-preview" id="cv" hidden></canvas>
@@ -300,7 +224,78 @@
     <div class="acciones">
       <button class="btn-wsp" id="btnWsp">📲 Mandar al grupo</button>
       <button class="btn-img" id="btnImg">🖼️ Descargar</button>
-      <button class="btn-save" id="btnSave">💾 Guardar asado</button>
+      <button class="btn-save" id="btnSave">💾 Guardar</button>
+    </div>
+  </div>
+
+  <!-- ================= GRUPO ONLINE ================= -->
+  <div id="vista-grupo" hidden>
+    <div class="aviso-config" id="avisoConfig" hidden>
+      ⚠️ Falta configurar la base de datos. Abrí el <code>index.html</code> y pegá tu
+      <code>SUPABASE_URL</code> y <code>SUPABASE_KEY</code> donde dice CONFIG (líneas de arriba del script).
+    </div>
+
+    <!-- sin grupo -->
+    <div id="grupoEntrada">
+      <section class="card">
+        <h2>Crear un grupo</h2>
+        <p class="mini">Te da un código para tirar al WhatsApp. Sin registro, sin contraseña.</p>
+        <div class="fila" style="border:none"><div class="campo" style="width:100%"><input type="text" id="gNombre" placeholder="Nombre del grupo" aria-label="Nombre del grupo"></div></div>
+        <div class="fila" style="border:none"><div class="campo" style="width:100%"><input type="text" id="gYo" placeholder="Tu nombre" aria-label="Tu nombre"></div></div>
+        <button class="btn-solido rojo" id="btnCrearGrupo">Crear grupo</button>
+      </section>
+      <section class="card">
+        <h2>Unirme con código</h2>
+        <div class="fila" style="border:none"><div class="campo" style="width:100%"><input type="text" id="gCodigo" placeholder="Código (ej: ASADO-7K3)" aria-label="Código" style="text-transform:uppercase"></div></div>
+        <div class="fila" style="border:none"><div class="campo" style="width:100%"><input type="text" id="gYo2" placeholder="Tu nombre" aria-label="Tu nombre"></div></div>
+        <button class="btn-solido" id="btnUnirme">Entrar</button>
+      </section>
+    </div>
+
+    <!-- dentro del grupo -->
+    <div id="grupoDentro" hidden>
+      <section class="card">
+        <div class="grupo-head">
+          <h2 id="gTitulo">Grupo</h2>
+          <button class="btn-mini" id="btnRefrescar">🔄</button>
+          <button class="btn-mini" id="btnSalir">salir</button>
+        </div>
+        <p class="mini">Compartí el código para que entren:</p>
+        <div class="codigo-grande" id="gCodigoVer"></div>
+        <button class="btn-linea" id="btnCompartirCodigo">📲 mandar código por WhatsApp</button>
+      </section>
+
+      <section class="card">
+        <h2>Los del grupo</h2>
+        <p class="mini">Cada uno entra desde su celu con el código. La parte se puede ajustar.</p>
+        <div id="gMiembros"></div>
+      </section>
+
+      <section class="card">
+        <h2>Gastos del asado</h2>
+        <p class="mini">Cada uno carga lo suyo desde su teléfono.</p>
+        <div id="gGastos"></div>
+        <div class="fila" style="border:none;flex-wrap:wrap">
+          <div class="campo" style="flex:1;width:auto;min-width:110px"><input type="text" id="gConcepto" placeholder="¿Qué cosa?" aria-label="Concepto"></div>
+          <div class="campo" style="width:100px"><span class="simbolo">$</span><input type="number" id="gMonto" min="0" inputmode="decimal" placeholder="0" aria-label="Monto"></div>
+        </div>
+        <button class="btn-solido" id="btnGastoGrupo">Anotar mi gasto</button>
+      </section>
+
+      <section class="card">
+        <h2>¿A dónde transfieren?</h2>
+        <div class="campo" style="width:100%"><input type="text" id="gAlias" placeholder="Alias del que más pagó" aria-label="Alias"></div>
+      </section>
+
+      <div id="zonaTicketG">
+        <div class="esperando" id="esperandoG">Cuando haya gastos, el ticket aparece acá 👇</div>
+        <canvas class="ticket-preview" id="cvG" hidden></canvas>
+      </div>
+      <div class="acciones">
+        <button class="btn-wsp" id="btnWspG">📲 Mandar al grupo</button>
+        <button class="btn-img" id="btnImgG">🖼️ Descargar</button>
+        <button class="btn-save" id="btnNuevoAsado">🧹 Nuevo asado</button>
+      </div>
     </div>
   </div>
 
@@ -318,14 +313,33 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
+/* ================== CONFIG — PEGÁ TUS CLAVES ACÁ ==================
+   1) Entrá a tu proyecto en supabase.com
+   2) Settings → API
+   3) Copiá "Project URL" y "anon public key" y pegalos abajo entre comillas
+==================================================================== */
+var SUPABASE_URL = "PEGAR_ACA_TU_URL";
+var SUPABASE_KEY = "PEGAR_ACA_TU_ANON_KEY";
+/* ================================================================== */
+
 (function(){
   var $ = function(id){ return document.getElementById(id); };
   var moneda = '$';
   var modo = 'rapido';
 
   var fmt = function(n){ return moneda + Math.round(n).toLocaleString('es-UY'); };
-  var esc = function(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+
+  /* ============ SUPABASE ============ */
+  var db = null;
+  var configurado = SUPABASE_URL.indexOf('http') === 0;
+  if(configurado && window.supabase){
+    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  }
+  var grupo = null; // {id, codigo, nombre, yo}
+  try{ grupo = JSON.parse(localStorage.getItem('grupoActivo') || 'null'); }catch(e){}
 
   /* ============ TABS ============ */
   document.querySelectorAll('.tab').forEach(function(t){
@@ -334,90 +348,80 @@
       t.classList.add('on');
       $('vista-previa').hidden = t.dataset.t !== 'previa';
       $('vista-cuenta').hidden = t.dataset.t !== 'cuenta';
+      $('vista-grupo').hidden  = t.dataset.t !== 'grupo';
       $('vista-hist').hidden   = t.dataset.t !== 'hist';
       if(t.dataset.t === 'previa') previa();
       if(t.dataset.t === 'hist') pintarHist();
+      if(t.dataset.t === 'grupo') entrarVistaGrupo();
     });
   });
 
-  /* ============ STEPPERS genéricos ============ */
+  /* ============ STEPPERS ============ */
   document.addEventListener('click', function(e){
     var s = e.target.dataset && e.target.dataset.s;
     if(!s) return;
     var id = s.slice(1), dir = s[0] === '+' ? 1 : -1;
     var inp = $(id);
     inp.value = Math.max(0, (parseInt(inp.value,10) || 0) + dir);
-    previa(); dibujar();
+    previa(); dibujarLocal();
   });
 
-  /* ============ LA PREVIA (carne) ============ */
+  /* ============ LA PREVIA ============ */
   function previa(){
     var a = parseInt($('adultos').value,10) || 0;
     var n = parseInt($('ninos').value,10) || 0;
     if(!a && !n){ $('previaRes').innerHTML = '<li class="vacio">Poné cuántos son.</li>'; return; }
     var carne = a*0.45 + n*0.25;
-    var chorizos = Math.ceil(a*1.5 + n*1);
-    var pan = Math.ceil((a+n)/2);
-    var carbon = Math.max(3, Math.ceil(carne*1.2));
-    var bebida = Math.ceil(a*1 + n*0.5);
     var kg = function(x){ return (Math.round(x*10)/10).toLocaleString('es-UY') + ' kg'; };
     $('previaRes').innerHTML =
       '<li><span>Carne (asado, vacío...)</span><b>' + kg(carne) + '</b></li>' +
-      '<li><span>Chorizos</span><b>' + chorizos + ' un.</b></li>' +
-      '<li><span>Pan flauta</span><b>' + pan + ' un.</b></li>' +
-      '<li><span>Carbón / leña</span><b>' + kg(carbon) + '</b></li>' +
-      '<li><span>Bebida</span><b>' + bebida + ' L</b></li>' +
+      '<li><span>Chorizos</span><b>' + Math.ceil(a*1.5+n) + ' un.</b></li>' +
+      '<li><span>Pan flauta</span><b>' + Math.ceil((a+n)/2) + ' un.</b></li>' +
+      '<li><span>Carbón / leña</span><b>' + kg(Math.max(3, Math.ceil(carne*1.2))) + '</b></li>' +
+      '<li><span>Bebida</span><b>' + Math.ceil(a + n*0.5) + ' L</b></li>' +
       '<li><span>Picada</span><b>1 tabla c/6</b></li>';
   }
   $('adultos').addEventListener('input', previa);
   $('ninos').addEventListener('input', previa);
 
-  /* ============ MODOS ============ */
+  /* ============ MODOS LOCALES ============ */
   $('modoRapido').addEventListener('click', function(){ setModo('rapido'); });
   $('modoNombres').addEventListener('click', function(){ setModo('nombres'); });
   function setModo(m){
     modo = m;
-    $('modoRapido').classList.toggle('on', m === 'rapido');
-    $('modoNombres').classList.toggle('on', m === 'nombres');
+    $('modoRapido').classList.toggle('on', m==='rapido');
+    $('modoNombres').classList.toggle('on', m==='nombres');
     $('cardPersonas').hidden = m !== 'nombres';
     $('cardCant').hidden = m !== 'rapido';
-    document.querySelectorAll('.pagador').forEach(function(s){ s.hidden = m !== 'nombres'; });
-    if(m === 'nombres' && !document.querySelectorAll('#personas .fila').length){
-      addPersona(); addPersona();
-    }
-    refrescarPagadores(); dibujar();
+    document.querySelectorAll('#vista-cuenta .pagador').forEach(function(s){ s.hidden = m !== 'nombres'; });
+    if(m==='nombres' && !document.querySelectorAll('#personas .fila').length){ addPersona(); addPersona(); }
+    refrescarPagadores(); dibujarLocal();
   }
 
-  /* ============ MONEDA ============ */
   document.querySelectorAll('.monedas button').forEach(function(b){
     b.addEventListener('click', function(){
       document.querySelectorAll('.monedas button').forEach(function(x){ x.classList.remove('on'); });
-      b.classList.add('on');
-      moneda = b.dataset.m;
+      b.classList.add('on'); moneda = b.dataset.m;
       document.querySelectorAll('.simbolo').forEach(function(s){ s.textContent = moneda; });
-      dibujar();
+      dibujarLocal(); pintarGrupo();
     });
   });
 
-  /* ============ PERSONAS (modo nombres) ============ */
+  /* ============ PERSONAS LOCALES ============ */
   function addPersona(){
     var fila = document.createElement('div');
     fila.className = 'fila';
     fila.innerHTML =
       '<div class="campo" style="flex:1;width:auto"><input type="text" class="p-nombre" placeholder="Nombre" aria-label="Nombre"></div>' +
-      '<select class="p-parte" aria-label="Parte">' +
-        '<option value="1">entera</option>' +
-        '<option value="0.5">media</option>' +
-        '<option value="0.25">liviana</option>' +
-      '</select>' +
-      '<button class="del" aria-label="Quitar persona">×</button>';
+      '<select class="p-parte" aria-label="Parte"><option value="1">entera</option><option value="0.5">media</option><option value="0.25">liviana</option></select>' +
+      '<button class="del" aria-label="Quitar">×</button>';
     $('personas').appendChild(fila);
   }
   $('btnPersona').addEventListener('click', function(){ addPersona(); refrescarPagadores(); });
   $('personas').addEventListener('click', function(e){
-    if(e.target.classList.contains('del')){ e.target.closest('.fila').remove(); refrescarPagadores(); dibujar(); }
+    if(e.target.classList.contains('del')){ e.target.closest('.fila').remove(); refrescarPagadores(); dibujarLocal(); }
   });
-  $('personas').addEventListener('input', function(){ refrescarPagadores(); dibujar(); });
+  $('personas').addEventListener('input', function(){ refrescarPagadores(); dibujarLocal(); });
 
   function leerPersonas(){
     var ps = [];
@@ -427,33 +431,31 @@
     });
     return ps;
   }
-
   function refrescarPagadores(){
     if(modo !== 'nombres') return;
     var ps = leerPersonas();
-    document.querySelectorAll('.pagador').forEach(function(sel){
+    document.querySelectorAll('#vista-cuenta .pagador').forEach(function(sel){
       var prev = sel.value;
-      sel.innerHTML = '<option value="">¿quién pagó?</option>' +
-        ps.map(function(p){ return '<option>' + esc(p.n) + '</option>'; }).join('');
-      if(ps.some(function(p){ return p.n === prev; })) sel.value = prev;
+      sel.innerHTML = '<option value="">¿quién pagó?</option>' + ps.map(function(p){ return '<option>' + esc(p.n) + '</option>'; }).join('');
+      if(ps.some(function(p){ return p.n===prev; })) sel.value = prev;
     });
   }
 
-  /* ============ GASTOS ============ */
+  /* ============ GASTOS LOCALES ============ */
   $('btnOtro').addEventListener('click', function(){
     var fila = document.createElement('div');
     fila.className = 'fila';
     fila.innerHTML =
-      '<div class="campo" style="flex:1;width:auto"><input type="text" class="nombre-otro" placeholder="¿Qué cosa?" aria-label="Nombre del gasto"></div>' +
+      '<div class="campo" style="flex:1;width:auto"><input type="text" class="nombre-otro" placeholder="¿Qué cosa?" aria-label="Gasto"></div>' +
       '<div class="campo"><span class="simbolo">' + moneda + '</span><input type="number" min="0" inputmode="decimal" placeholder="0" class="monto" aria-label="Monto"></div>' +
       '<select class="pagador"' + (modo !== 'nombres' ? ' hidden' : '') + '></select>' +
-      '<button class="del" aria-label="Borrar gasto">×</button>';
+      '<button class="del" aria-label="Borrar">×</button>';
     $('gastos').appendChild(fila);
     refrescarPagadores();
     fila.querySelector('.nombre-otro').focus();
   });
   $('gastos').addEventListener('click', function(e){
-    if(e.target.classList.contains('del')){ e.target.closest('.fila').remove(); dibujar(); }
+    if(e.target.classList.contains('del')){ e.target.closest('.fila').remove(); dibujarLocal(); }
   });
 
   function leerGastos(){
@@ -468,43 +470,20 @@
     return items;
   }
 
-  /* ============ CÁLCULO ============ */
-  function datos(){
-    var items = leerGastos();
-    if(!items.length) return null;
-    var total = items.reduce(function(s,i){ return s + i.m; }, 0);
-    var alias = $('alias').value.trim();
-
-    if(modo === 'rapido'){
-      var enteras = parseInt($('cant').value,10) || 0;
-      var medias = parseInt($('medias').value,10) || 0;
-      var partes = enteras + medias*0.5;
-      if(partes <= 0) return null;
-      var cuota = total/partes;
-      return {modo:'rapido', items:items, total:total, alias:alias,
-              enteras:enteras, medias:medias, cuota:cuota,
-              cant:enteras+medias};
-    }
-
-    var ps = leerPersonas();
-    if(ps.length < 2) return null;
-    var sinPagador = items.some(function(i){ return !i.p; });
-    if(sinPagador) return null;
-    var pesoTotal = ps.reduce(function(s,p){ return s + p.parte; }, 0);
+  /* ============ CÁLCULO GENÉRICO ============ */
+  function calcularNombres(personas, items, total){
+    var pesoTotal = personas.reduce(function(s,p){ return s+p.parte; }, 0);
     var saldo = {};
-    ps.forEach(function(p){ saldo[p.n] = -(total * p.parte / pesoTotal); });
-    items.forEach(function(i){ saldo[i.p] += i.m; });
-
-    var deud = [], acree = [];
-    ps.forEach(function(p){
+    personas.forEach(function(p){ saldo[p.n] = -(total*p.parte/pesoTotal); });
+    items.forEach(function(i){ if(saldo[i.p] !== undefined) saldo[i.p] += i.m; });
+    var deud=[], acree=[];
+    personas.forEach(function(p){
       var s = saldo[p.n];
       if(s < -0.5) deud.push({n:p.n, m:-s});
       else if(s > 0.5) acree.push({n:p.n, m:s});
     });
-    deud.sort(function(a,b){ return b.m-a.m; });
-    acree.sort(function(a,b){ return b.m-a.m; });
-    var transfers = [];
-    var i=0,j=0;
+    deud.sort(function(a,b){return b.m-a.m;}); acree.sort(function(a,b){return b.m-a.m;});
+    var transfers=[], i=0, j=0;
     while(i<deud.length && j<acree.length){
       var pago = Math.min(deud[i].m, acree[j].m);
       transfers.push({de:deud[i].n, a:acree[j].n, m:pago});
@@ -512,20 +491,36 @@
       if(deud[i].m < 1) i++;
       if(acree[j].m < 1) j++;
     }
-    return {modo:'nombres', items:items, total:total, alias:alias,
-            personas:ps, pesoTotal:pesoTotal, transfers:transfers, cant:ps.length};
+    return {pesoTotal:pesoTotal, transfers:transfers};
   }
 
-  /* ============ CANVAS ============ */
+  function datosLocal(){
+    var items = leerGastos();
+    if(!items.length) return null;
+    var total = items.reduce(function(s,i){ return s+i.m; }, 0);
+    var alias = $('alias').value.trim();
+    if(modo === 'rapido'){
+      var enteras = parseInt($('cant').value,10)||0;
+      var medias = parseInt($('medias').value,10)||0;
+      var partes = enteras + medias*0.5;
+      if(partes <= 0) return null;
+      return {modo:'rapido', items:items, total:total, alias:alias,
+              enteras:enteras, medias:medias, cuota:total/partes, cant:enteras+medias};
+    }
+    var ps = leerPersonas();
+    if(ps.length < 2) return null;
+    if(items.some(function(i){ return !i.p; })) return null;
+    var r = calcularNombres(ps, items, total);
+    return {modo:'nombres', items:items, total:total, alias:alias,
+            personas:ps, pesoTotal:r.pesoTotal, transfers:r.transfers, cant:ps.length};
+  }
+
+  /* ============ CANVAS COMPARTIDO ============ */
   var S = 2;
-  function dibujar(){
-    var d = datos();
-    var cv = $('cv'), esp = $('esperando');
+  function renderTicket(d, cv, esp){
     if(!d){ cv.hidden = true; esp.hidden = false; return null; }
-
     var W = 640, margen = 46, tw = W - margen*2, px = 36;
-    var lineas = [];  // [{tipo, ...}] para calcular alto
-
+    var lineas = [];
     d.items.forEach(function(i){ lineas.push({t:'item', c:i.c + (i.p ? ' ('+i.p+')' : ''), v:fmt(i.m)}); });
     lineas.push({t:'sep'});
     lineas.push({t:'total', c:'TOTAL', v:fmt(d.total)});
@@ -535,42 +530,34 @@
                    sub:'(' + fmt(d.total) + ' ÷ ' + (d.enteras + (d.medias ? ' y ' + d.medias + ' medias' : '')) + ')'});
       if(d.medias) lineas.push({t:'item', c:'media parte paga', v:fmt(d.cuota/2)});
     } else {
-      lineas.push({t:'label', c:'CUÁNTO LE TOCA A CADA UNO'});
+      lineas.push({t:'label', c:'CUANTO LE TOCA A CADA UNO'});
       d.personas.forEach(function(p){
-        var cuota = d.total * p.parte / d.pesoTotal;
+        var cuota = d.total*p.parte/d.pesoTotal;
         lineas.push({t:'item', c:p.n + (p.parte<1 ? ' ('+(p.parte===0.5?'media':'liviana')+')' : ''), v:fmt(cuota)});
       });
       lineas.push({t:'sep'});
       lineas.push({t:'label', c:'TRANSFERENCIAS'});
       if(d.transfers.length){
-        d.transfers.forEach(function(t){ lineas.push({t:'transf', c:t.de + ' → ' + t.a, v:fmt(t.m)}); });
+        d.transfers.forEach(function(t){ lineas.push({t:'transf', c:t.de+' → '+t.a, v:fmt(t.m)}); });
       } else {
         lineas.push({t:'item', c:'Están todos a mano 🤝', v:''});
       }
     }
     if(d.alias) lineas.push({t:'alias', c:d.alias});
 
-    // alto dinámico
     var h = 0;
-    lineas.forEach(function(l){
-      h += l.t==='grande' ? 150 : l.t==='sep' ? 26 : l.t==='label' ? 40 : l.t==='alias' ? 64 : 40;
-    });
-    var ty = margen, yBase = ty + 110;
-    var th = yBase - ty + h + 80;
-    var H = th + margen*2;
+    lineas.forEach(function(l){ h += l.t==='grande'?150 : l.t==='sep'?26 : l.t==='label'?40 : l.t==='alias'?64 : 40; });
+    var ty = margen, th = 110 + h + 80, H = th + margen*2;
 
     cv.width = W*S; cv.height = H*S;
     cv.style.aspectRatio = W + '/' + H;
     var c = cv.getContext('2d');
-    c.setTransform(1,0,0,1,0,0);
-    c.scale(S,S);
+    c.setTransform(1,0,0,1,0,0); c.scale(S,S);
 
-    // fondo kraft
     c.fillStyle = '#dcc79f'; c.fillRect(0,0,W,H);
     c.strokeStyle = 'rgba(0,0,0,.04)';
     for(var gx=0; gx<W; gx+=46){ c.beginPath(); c.moveTo(gx,0); c.lineTo(gx+18,H); c.stroke(); }
 
-    // ticket
     var tx = margen;
     c.fillStyle = 'rgba(35,29,21,.25)'; dentado(c, tx+5, ty+7, tw, th); c.fill();
     c.fillStyle = '#ffffff'; dentado(c, tx, ty, tw, th); c.fill();
@@ -581,64 +568,58 @@
     var hoy = new Date().toLocaleDateString('es-UY').split('/').join('.');
     c.fillText('A S A D O  —  ' + hoy, cx, y); y += 24;
     c.font = '400 15px "Space Mono", monospace'; c.globalAlpha = .6;
-    c.fillText(d.cant + (d.cant===1?' comensal':' comensales'), cx, y);
+    c.fillText((d.titulo || (d.cant + (d.cant===1?' comensal':' comensales'))), cx, y);
     c.globalAlpha = 1; y += 36;
 
     lineas.forEach(function(l){
-      if(l.t === 'sep'){ guiones(c, tx+px, y-6, tw-px*2); y += 26; return; }
-      if(l.t === 'label'){
-        c.font = '400 13px "Space Mono", monospace'; c.globalAlpha=.65; c.textAlign='center';
+      if(l.t==='sep'){ guiones(c, tx+px, y-6, tw-px*2); y += 26; return; }
+      if(l.t==='label'){
+        c.font='400 13px "Space Mono", monospace'; c.globalAlpha=.65; c.textAlign='center';
         c.fillText(l.c.split('').join(' '), cx, y); c.globalAlpha=1; y += 40; return;
       }
-      if(l.t === 'total'){
-        c.font = '700 20px "Space Mono", monospace';
+      if(l.t==='total'){
+        c.font='700 20px "Space Mono", monospace';
         c.textAlign='left'; c.fillText(l.c, tx+px, y);
-        c.textAlign='right'; c.fillText(l.v, tx+tw-px, y);
-        y += 40; return;
+        c.textAlign='right'; c.fillText(l.v, tx+tw-px, y); y += 40; return;
       }
-      if(l.t === 'grande'){
-        c.font = '400 13px "Space Mono", monospace'; c.globalAlpha=.65; c.textAlign='center';
+      if(l.t==='grande'){
+        c.font='400 13px "Space Mono", monospace'; c.globalAlpha=.65; c.textAlign='center';
         c.fillText(l.label.split('').join(' '), cx, y); c.globalAlpha=1; y += 54;
-        c.fillStyle = '#b3352b'; c.font = '46px "Permanent Marker", cursive';
-        c.save(); c.translate(cx,y); c.rotate(-0.02); c.fillText(l.v, 0, 0); c.restore();
-        y += 30;
-        c.fillStyle = '#231d15'; c.font = '400 14px "Space Mono", monospace'; c.globalAlpha=.7;
+        c.fillStyle='#b3352b'; c.font='46px "Permanent Marker", cursive';
+        c.save(); c.translate(cx,y); c.rotate(-0.02); c.fillText(l.v,0,0); c.restore(); y += 30;
+        c.fillStyle='#231d15'; c.font='400 14px "Space Mono", monospace'; c.globalAlpha=.7;
         c.fillText(l.sub, cx, y); c.globalAlpha=1; y += 46; return;
       }
-      if(l.t === 'transf'){
-        c.font = '400 16px "Space Mono", monospace';
+      if(l.t==='transf'){
+        c.font='400 16px "Space Mono", monospace';
         c.textAlign='left'; c.fillText(l.c, tx+px, y);
-        c.fillStyle = '#2e6e46'; c.font = '700 16px "Space Mono", monospace';
+        c.fillStyle='#2e6e46'; c.font='700 16px "Space Mono", monospace';
         c.textAlign='right'; c.fillText(l.v, tx+tw-px, y);
-        c.fillStyle = '#231d15'; y += 40; return;
+        c.fillStyle='#231d15'; y += 40; return;
       }
-      if(l.t === 'alias'){
+      if(l.t==='alias'){
         y += 8;
-        c.font = '400 13px "Space Mono", monospace'; c.globalAlpha=.65; c.textAlign='center';
+        c.font='400 13px "Space Mono", monospace'; c.globalAlpha=.65; c.textAlign='center';
         c.fillText('T R A N S F E R I R   A', cx, y); c.globalAlpha=1; y += 26;
-        c.font = '700 18px "Space Mono", monospace';
-        c.fillText(l.c, cx, y); y += 30; return;
+        c.font='700 18px "Space Mono", monospace'; c.fillText(l.c, cx, y); y += 30; return;
       }
-      // item
-      c.font = '400 16px "Space Mono", monospace';
+      c.font='400 16px "Space Mono", monospace';
       c.textAlign='left'; c.fillText(l.c, tx+px, y);
       c.textAlign='right'; c.fillText(l.v, tx+tw-px, y);
       y += 40;
     });
 
-    // sello
     c.save();
     c.translate(tx+tw-92, ty+th-40); c.rotate(-0.10);
-    c.strokeStyle = '#b3352b'; c.fillStyle = '#b3352b'; c.lineWidth = 3; c.globalAlpha = .85;
+    c.strokeStyle='#b3352b'; c.fillStyle='#b3352b'; c.lineWidth=3; c.globalAlpha=.85;
     c.strokeRect(-62,-22,124,40);
-    c.font = '20px "Permanent Marker", cursive'; c.textAlign='center';
+    c.font='20px "Permanent Marker", cursive'; c.textAlign='center';
     c.fillText('A SALDAR', 0, 6);
     c.restore();
 
     cv.hidden = false; esp.hidden = true;
     return d;
   }
-
   function dentado(c,x,y,w,h){
     var r=7, paso=16;
     c.beginPath(); c.moveTo(x, y+r);
@@ -652,61 +633,211 @@
     c.beginPath(); c.moveTo(x,y); c.lineTo(x+w,y); c.stroke(); c.restore();
   }
 
-  /* ============ COMPARTIR / DESCARGAR ============ */
-  function nombreArchivo(){ return 'cuenta-asado-' + new Date().toISOString().slice(0,10) + '.png'; }
+  function dibujarLocal(){ return renderTicket(datosLocal(), $('cv'), $('esperando')); }
 
-  $('btnImg').addEventListener('click', function(){
-    if(!dibujar()) return;
-    $('cv').toBlob(function(blob){
+  /* ============ COMPARTIR (genérico) ============ */
+  function nombreArchivo(){ return 'cuenta-asado-' + new Date().toISOString().slice(0,10) + '.png'; }
+  function descargarCv(cv){
+    cv.toBlob(function(blob){
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob); a.download = nombreArchivo(); a.click();
       setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
     }, 'image/png');
-  });
-
-  $('btnWsp').addEventListener('click', function(){
-    var d = dibujar(); if(!d) return;
-    $('cv').toBlob(function(blob){
+  }
+  function compartirCv(cv, d){
+    cv.toBlob(function(blob){
       var file = new File([blob], nombreArchivo(), {type:'image/png'});
       if(navigator.canShare && navigator.canShare({files:[file]})){
         navigator.share({files:[file], title:'La cuenta del asado'}).catch(function(){});
       } else {
-        var a = document.createElement('a');
-        a.href = URL.createObjectURL(blob); a.download = nombreArchivo(); a.click();
+        descargarCv(cv);
         var lineas = ['🥩 *LA CUENTA DEL ASADO*',''];
         d.items.forEach(function(i){ lineas.push('• ' + i.c + ': ' + fmt(i.m)); });
         lineas.push('', 'Total: ' + fmt(d.total));
-        if(d.modo === 'rapido'){ lineas.push('👉 *Cada uno pone ' + fmt(d.cuota) + '*'); }
+        if(d.modo==='rapido'){ lineas.push('👉 *Cada uno pone ' + fmt(d.cuota) + '*'); }
         else { d.transfers.forEach(function(t){ lineas.push('→ ' + t.de + ' le pasa ' + fmt(t.m) + ' a ' + t.a); }); }
         if(d.alias) lineas.push('', 'Transferir a: ' + d.alias);
         window.open('https://wa.me/?text=' + encodeURIComponent(lineas.join('\n')), '_blank');
-        setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
       }
     }, 'image/png');
+  }
+  $('btnImg').addEventListener('click', function(){ if(dibujarLocal()) descargarCv($('cv')); });
+  $('btnWsp').addEventListener('click', function(){ var d = dibujarLocal(); if(d) compartirCv($('cv'), d); });
+
+  /* ============ GRUPO ONLINE ============ */
+  function entrarVistaGrupo(){
+    $('avisoConfig').hidden = configurado;
+    $('grupoEntrada').hidden = !!grupo;
+    $('grupoDentro').hidden = !grupo;
+    if(grupo) cargarGrupo();
+  }
+
+  function genCodigo(){
+    var letras = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+    var c = '';
+    for(var i=0;i<3;i++) c += letras[Math.floor(Math.random()*letras.length)];
+    return 'ASADO-' + c;
+  }
+
+  function guardarGrupoLocal(){
+    try{ localStorage.setItem('grupoActivo', JSON.stringify(grupo)); }catch(e){}
+  }
+
+  $('btnCrearGrupo').addEventListener('click', function(){
+    if(!db){ $('avisoConfig').hidden = false; return; }
+    var nombre = $('gNombre').value.trim();
+    var yo = $('gYo').value.trim();
+    if(!nombre || !yo) return;
+    var codigo = genCodigo();
+    db.from('grupos').insert({codigo:codigo, nombre:nombre}).select().single()
+      .then(function(r){
+        if(r.error){ alert('No se pudo crear: ' + r.error.message); return; }
+        grupo = {id:r.data.id, codigo:codigo, nombre:nombre, yo:yo};
+        guardarGrupoLocal();
+        return db.from('miembros').insert({grupo_id:grupo.id, nombre:yo, parte:1});
+      })
+      .then(function(){ entrarVistaGrupo(); });
   });
 
-  /* ============ HISTORIAL (localStorage) ============ */
-  function lsGet(){
-    try{ return JSON.parse(localStorage.getItem('asados') || '[]'); }catch(e){ return null; }
-  }
-  function lsSet(v){
-    try{ localStorage.setItem('asados', JSON.stringify(v)); return true; }catch(e){ return false; }
+  $('btnUnirme').addEventListener('click', function(){
+    if(!db){ $('avisoConfig').hidden = false; return; }
+    var codigo = $('gCodigo').value.trim().toUpperCase();
+    var yo = $('gYo2').value.trim();
+    if(!codigo || !yo) return;
+    db.from('grupos').select().eq('codigo', codigo).single()
+      .then(function(r){
+        if(r.error || !r.data){ alert('No encontré un grupo con ese código. Fijate que esté bien escrito.'); return; }
+        grupo = {id:r.data.id, codigo:codigo, nombre:r.data.nombre, yo:yo};
+        guardarGrupoLocal();
+        // agregar como miembro si no está
+        return db.from('miembros').select().eq('grupo_id', grupo.id).eq('nombre', yo)
+          .then(function(m){
+            if(!m.data || !m.data.length){
+              return db.from('miembros').insert({grupo_id:grupo.id, nombre:yo, parte:1});
+            }
+          });
+      })
+      .then(function(){ entrarVistaGrupo(); });
+  });
+
+  $('btnSalir').addEventListener('click', function(){
+    if(!confirm('¿Salir del grupo en este celular? (el grupo sigue existiendo, podés volver con el código)')) return;
+    grupo = null;
+    try{ localStorage.removeItem('grupoActivo'); }catch(e){}
+    entrarVistaGrupo();
+  });
+
+  $('btnCompartirCodigo').addEventListener('click', function(){
+    if(!grupo) return;
+    var txt = '🥩 Sumate a "' + grupo.nombre + '" en La Cuenta del Asado:\n' +
+      location.origin + '\nCódigo: *' + grupo.codigo + '*';
+    window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank');
+  });
+
+  $('btnRefrescar').addEventListener('click', cargarGrupo);
+
+  var gMiembros = [], gGastosData = [];
+  function cargarGrupo(){
+    if(!db || !grupo) return;
+    $('gTitulo').textContent = grupo.nombre;
+    $('gCodigoVer').textContent = grupo.codigo;
+    Promise.all([
+      db.from('miembros').select().eq('grupo_id', grupo.id).order('created_at'),
+      db.from('gastos').select().eq('grupo_id', grupo.id).order('created_at')
+    ]).then(function(rs){
+      gMiembros = rs[0].data || [];
+      gGastosData = rs[1].data || [];
+      pintarGrupo();
+    });
   }
 
+  function pintarGrupo(){
+    if(!grupo) return;
+    // miembros
+    $('gMiembros').innerHTML = gMiembros.length
+      ? gMiembros.map(function(m){
+          return '<div class="fila">' +
+            '<span class="lbl">' + esc(m.nombre) + (m.nombre===grupo.yo?' <span class="pill">vos</span>':'') + '</span>' +
+            '<select class="m-parte" data-id="' + m.id + '">' +
+              '<option value="1"' + (m.parte==1?' selected':'') + '>entera</option>' +
+              '<option value="0.5"' + (m.parte==0.5?' selected':'') + '>media</option>' +
+              '<option value="0.25"' + (m.parte==0.25?' selected':'') + '>liviana</option>' +
+            '</select></div>';
+        }).join('')
+      : '<p class="vacio">Todavía no entró nadie.</p>';
+    // gastos
+    $('gGastos').innerHTML = gGastosData.length
+      ? gGastosData.map(function(g){
+          return '<div class="fila">' +
+            '<span class="lbl">' + esc(g.concepto) + '</span>' +
+            '<span class="pill">' + esc(g.pagador) + '</span>' +
+            '<span style="font-family:\'Space Mono\',monospace;font-weight:700">' + fmt(g.monto) + '</span>' +
+            '<button class="del" data-gid="' + g.id + '" aria-label="Borrar">×</button></div>';
+        }).join('')
+      : '<p class="vacio">Nada anotado todavía.</p>';
+    dibujarGrupo();
+  }
+
+  $('gMiembros').addEventListener('change', function(e){
+    if(!e.target.classList.contains('m-parte') || !db) return;
+    var id = e.target.dataset.id, v = parseFloat(e.target.value);
+    db.from('miembros').update({parte:v}).eq('id', id).then(cargarGrupo);
+  });
+
+  $('gGastos').addEventListener('click', function(e){
+    var gid = e.target.getAttribute('data-gid');
+    if(!gid || !db) return;
+    if(confirm('¿Borrar este gasto?')) db.from('gastos').delete().eq('id', gid).then(cargarGrupo);
+  });
+
+  $('btnGastoGrupo').addEventListener('click', function(){
+    if(!db || !grupo) return;
+    var c = $('gConcepto').value.trim();
+    var m = parseFloat($('gMonto').value);
+    if(!c || !(m > 0)) return;
+    db.from('gastos').insert({grupo_id:grupo.id, concepto:c, monto:m, pagador:grupo.yo})
+      .then(function(){ $('gConcepto').value=''; $('gMonto').value=''; cargarGrupo(); });
+  });
+
+  $('btnNuevoAsado').addEventListener('click', function(){
+    if(!db || !grupo) return;
+    if(confirm('¿Arrancar un asado nuevo? Se borran los gastos actuales del grupo (guardalo antes si querés).'))
+      db.from('gastos').delete().eq('grupo_id', grupo.id).then(cargarGrupo);
+  });
+
+  function datosGrupo(){
+    if(!gGastosData.length || gMiembros.length < 2) return null;
+    var items = gGastosData.map(function(g){ return {c:g.concepto, m:parseFloat(g.monto), p:g.pagador}; });
+    var total = items.reduce(function(s,i){ return s+i.m; }, 0);
+    var personas = gMiembros.map(function(m){ return {n:m.nombre, parte:parseFloat(m.parte)}; });
+    var r = calcularNombres(personas, items, total);
+    return {modo:'nombres', items:items, total:total, alias:$('gAlias').value.trim(),
+            personas:personas, pesoTotal:r.pesoTotal, transfers:r.transfers,
+            cant:personas.length, titulo:grupo.nombre + ' · ' + personas.length + ' comensales'};
+  }
+  function dibujarGrupo(){ return renderTicket(datosGrupo(), $('cvG'), $('esperandoG')); }
+  $('gAlias').addEventListener('input', dibujarGrupo);
+  $('btnImgG').addEventListener('click', function(){ if(dibujarGrupo()) descargarCv($('cvG')); });
+  $('btnWspG').addEventListener('click', function(){ var d = dibujarGrupo(); if(d) compartirCv($('cvG'), d); });
+
+  // refresco suave cada 12s cuando la pestaña grupo está visible
+  setInterval(function(){
+    if(grupo && !$('vista-grupo').hidden && !document.hidden) cargarGrupo();
+  }, 12000);
+
+  /* ============ HISTORIAL ============ */
+  function lsGet(){ try{ return JSON.parse(localStorage.getItem('asados') || '[]'); }catch(e){ return null; } }
+  function lsSet(v){ try{ localStorage.setItem('asados', JSON.stringify(v)); return true; }catch(e){ return false; } }
+
   $('btnSave').addEventListener('click', function(){
-    var d = dibujar(); if(!d) return;
+    var d = dibujarLocal(); if(!d) return;
     var hist = lsGet();
     if(hist === null){ alert('Este navegador no deja guardar. Igual podés descargar la imagen.'); return; }
-    var pagadores = d.modo === 'nombres'
-      ? Array.from(new Set(d.items.map(function(i){ return i.p; }))) : [];
-    hist.unshift({
-      f: new Date().toISOString().slice(0,10),
-      total: d.total, cant: d.cant, moneda: moneda,
-      pagadores: pagadores
-    });
+    var pagadores = d.modo==='nombres' ? Array.from(new Set(d.items.map(function(i){ return i.p; }))) : [];
+    hist.unshift({f:new Date().toISOString().slice(0,10), total:d.total, cant:d.cant, moneda:moneda, pagadores:pagadores});
     if(lsSet(hist)){
       $('btnSave').textContent = '✅ Guardado';
-      setTimeout(function(){ $('btnSave').textContent = '💾 Guardar asado'; }, 1500);
+      setTimeout(function(){ $('btnSave').textContent = '💾 Guardar'; }, 1500);
     }
   });
 
@@ -715,22 +846,18 @@
     var cont = $('histLista');
     if(hist === null || !hist.length){
       cont.innerHTML = '<p class="vacio">Todavía no guardaste ningún asado.</p>';
-      $('ranking').hidden = true; $('btnBorrarHist').hidden = true;
-      return;
+      $('ranking').hidden = true; $('btnBorrarHist').hidden = true; return;
     }
     cont.innerHTML = hist.map(function(h,i){
       return '<div class="hist-item">' +
         '<span class="f">' + h.f.split('-').reverse().join('/') + '</span>' +
         '<span>' + h.cant + ' pers.</span>' +
         '<span class="t">' + (h.moneda||'$') + Math.round(h.total).toLocaleString('es-UY') + '</span>' +
-        '<button class="del" data-h="' + i + '" aria-label="Borrar">×</button>' +
-      '</div>';
+        '<button class="del" data-h="' + i + '" aria-label="Borrar">×</button></div>';
     }).join('');
-    // ranking de pagadores
     var conteo = {};
-    hist.forEach(function(h){ (h.pagadores||[]).forEach(function(p){ conteo[p] = (conteo[p]||0)+1; }); });
-    var rank = Object.keys(conteo).map(function(k){ return {n:k, v:conteo[k]}; })
-      .sort(function(a,b){ return b.v-a.v; }).slice(0,3);
+    hist.forEach(function(h){ (h.pagadores||[]).forEach(function(p){ conteo[p]=(conteo[p]||0)+1; }); });
+    var rank = Object.keys(conteo).map(function(k){ return {n:k,v:conteo[k]}; }).sort(function(a,b){ return b.v-a.v; }).slice(0,3);
     if(rank.length){
       $('ranking').hidden = false;
       $('rankLista').innerHTML = rank.map(function(r,i){
@@ -739,7 +866,6 @@
     } else { $('ranking').hidden = true; }
     $('btnBorrarHist').hidden = false;
   }
-
   $('histLista').addEventListener('click', function(e){
     var i = e.target.getAttribute('data-h');
     if(i === null) return;
@@ -750,14 +876,12 @@
     if(confirm('¿Borrar todo el historial?')){ lsSet([]); pintarHist(); }
   });
 
-  /* ============ eventos globales ============ */
+  /* ============ arranque ============ */
   document.addEventListener('input', function(e){
-    if(e.target.closest('#vista-cuenta')) dibujar();
+    if(e.target.closest('#vista-cuenta')) dibujarLocal();
   });
-
-  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(dibujar); }
-  previa();
-  dibujar();
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(function(){ dibujarLocal(); dibujarGrupo(); }); }
+  previa(); dibujarLocal();
 
   if('serviceWorker' in navigator){
     window.addEventListener('load', function(){ navigator.serviceWorker.register('/sw.js'); });
