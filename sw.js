@@ -1,6 +1,6 @@
 // La Cuenta del Asado — service worker
 // Guarda una copia de la app para que funcione sin internet.
-const CACHE = 'cuenta-asado-v1';
+const CACHE = 'cuenta-asado-v2';
 const ARCHIVOS = [
   '/',
   '/index.html',
